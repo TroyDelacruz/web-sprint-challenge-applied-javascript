@@ -11,7 +11,26 @@ const Header = (title, date, temp) => {
   //    <span class="temp">{ temp }</span>
   //  </div>
   //
-}
+
+      const headerElement = document.createElement('div');
+      const dateElement = document.createElement('span');
+      const titleElement = document.createElement('h1');
+      const tempElement = document.createElement('span');
+
+      headerElement.classList.add('header');
+      dateElement.classList.add('date');
+      tempElement.classList.add('temp');
+
+      headerElement.appendChild(dateElement);
+      headerElement.appendChild(titleElement);
+      headerElement.appendChild(tempElement);
+
+      titleElement.textContent = `${title}`;
+      dateElement.textContent = `${date}`;
+      tempElement.textContent = `${temp}`;
+
+      return headerElement;
+};
 
 const headerAppender = (selector) => {
   // TASK 2
@@ -20,12 +39,16 @@ const headerAppender = (selector) => {
   // It should create a header using the Header component above, passing arguments of your choosing.
   // It should append the header to the element in the DOM that matches the given selector.
   //
-
-  // HINT: querySelector can take in a string (ie querySelector("#wrapper")) 
+  // HINT: querySelector can take in a string (ie querySelector("#wrapper"))
   // but it can also take in a variable (ie querySelector(selector))
   // We are taking care of passing in the correct selector on line 16,
   // so all that you need to do is pass it into the querySelector method
   // for the tests to work!
-}
 
-export { Header, headerAppender }
+  const insertInfo = document.querySelector(selector);
+  insertInfo.appendChild(Header('Troy Delacruz', '12/16/1993', 'Fledgling Programmer!'));
+
+  return insertInfo;
+};
+
+export { Header, headerAppender };
